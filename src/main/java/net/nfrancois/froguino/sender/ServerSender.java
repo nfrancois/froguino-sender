@@ -1,11 +1,8 @@
-package net.nfrancois.net.nfrancois.froguino.sender;
+package net.nfrancois.froguino.sender;
 
-import gnu.io.NoSuchPortException;
-import gnu.io.PortInUseException;
-
-import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.net.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Send data to GAE Server.
@@ -14,12 +11,13 @@ public class ServerSender {
 
     private static final String TEMPERATURE_RESOURCE = "%s/temperature?t=%s";
 
-    /** Froguino Server serverUrl */
+    /**
+     * Froguino Server serverUrl
+     */
     private String serverUrl;
 
     /**
-     *
-     * @param url   Froguino server serverUrl
+     * @param url Froguino server serverUrl
      */
     public ServerSender(String url) {
         this.serverUrl = url;
@@ -27,6 +25,7 @@ public class ServerSender {
 
     /**
      * Send data to server
+     *
      * @param value value
      * @return
      */
@@ -40,10 +39,10 @@ public class ServerSender {
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
             writer.close();
             int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK){
+            if (responseCode == HttpURLConnection.HTTP_OK) {
                 return true;
             } else {
-                System.out.println("status code = "+responseCode);
+                System.out.println("status code = " + responseCode);
                 return false;
             }
         } catch (Exception e) {
@@ -51,7 +50,7 @@ public class ServerSender {
             System.out.println(e);
             return false;
         } finally {
-            if(connection != null){
+            if (connection != null) {
                 connection.disconnect();
             }
         }

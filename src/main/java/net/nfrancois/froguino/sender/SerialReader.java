@@ -1,32 +1,36 @@
-package net.nfrancois.net.nfrancois.froguino.sender;
+package net.nfrancois.froguino.sender;
 
 import gnu.io.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 /**
  * Read data from Serial Port
  */
 public class SerialReader implements SerialPortEventListener {
 
-    /** Separator between sensor name and  sensor value */
+    /**
+     * Separator between sensor name and  sensor value
+     */
     private final static String DATA_MESSAGE_SEPARATOR = ":";
 
-    /** Communication port */
+    /**
+     * Communication port
+     */
     private final CommPortIdentifier portId;
 
-    private  SerialPort serialPort;
+    private SerialPort serialPort;
 
     private ServerSender serverSender;
 
-    /** Milliseconds to block while waiting for port open */
+    /**
+     * Milliseconds to block while waiting for port open
+     */
     private static final int TIME_OUT = 2000;
-    /** Default bits per second for COM port. */
+    /**
+     * Default bits per second for COM port.
+     */
     private static final int DATA_RATE = 9600;
 
     /**
@@ -38,7 +42,8 @@ public class SerialReader implements SerialPortEventListener {
 
     /**
      * Default constructor.
-     * @param portIdentifier  Communication port identifier
+     *
+     * @param portIdentifier Communication port identifier
      * @throws NoSuchPortException
      */
     public SerialReader(String portIdentifier, ServerSender serverSender) throws Exception {

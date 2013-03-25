@@ -6,9 +6,11 @@ package net.nfrancois.froguino.sender;
 public class FroguinoSender {
 
     public static void main(String[] args) throws Exception {
-        // TODO read properties
-        ServerSender serverSender = new ServerSender("http://froguino.appspot.com");
-        SerialReader serialReader = new SerialReader("/dev/tty.usbmodemfd131", serverSender);
+        String server = PropertiesLoader.getValue(PropertiesLoader.FROGUINO_SERVER);
+        String portIdentifier = PropertiesLoader.getValue(PropertiesLoader.PORT_IDENTIFIER);
+        System.out.println("server=" + server);
+        ServerSender serverSender = new ServerSender(portIdentifier);
+        SerialReader serialReader = new SerialReader(server, serverSender);
     }
 
 

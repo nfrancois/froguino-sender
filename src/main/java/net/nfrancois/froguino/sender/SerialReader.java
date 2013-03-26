@@ -4,6 +4,7 @@ import gnu.io.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Enumeration;
 
 /**
  * Read data from Serial Port
@@ -22,7 +23,7 @@ public class SerialReader implements SerialPortEventListener {
 
     private SerialPort serialPort;
 
-    private ServerSender serverSender;
+    private final ServerSender serverSender;
 
     /**
      * Milliseconds to block while waiting for port open
@@ -47,14 +48,13 @@ public class SerialReader implements SerialPortEventListener {
      * @throws NoSuchPortException
      */
     public SerialReader(String portIdentifier, ServerSender serverSender) throws Exception {
-        portId = CommPortIdentifier.getPortIdentifier(portIdentifier);
         this.serverSender = serverSender;
-        // portId = CommPortIdentifier.getPortIdentifier("/dev/tty.usbmodemfd131");
+
+        portId = CommPortIdentifier.getPortIdentifier(portIdentifier);
 
         //
         // open serial port, and use class name for the appName.
-        serialPort = (SerialPort) portId.open(this.getClass().getName(),
-                TIME_OUT);
+        serialPort = (SerialPort) portId.open(this.getClass().getName(), TIME_OUT);
 
         // set port parameters
         serialPort.setSerialPortParams(DATA_RATE,
@@ -87,6 +87,17 @@ public class SerialReader implements SerialPortEventListener {
             } catch (Exception e) {
                 System.err.println(e.toString());
             }
+        }
+    }
+
+    /**
+     * List avaible serial ports.
+     */
+    public static void listAvaiblePorts() {
+        Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
+        while (portEnum.hasMoreElements()) {
+            CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
+            System.out.println(currPortId.getName());
         }
     }
 }

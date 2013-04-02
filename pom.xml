@@ -23,9 +23,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>rxtx</groupId>
+            <groupId>org.rxtx</groupId>
             <artifactId>rxtx</artifactId>
-            <version>2.2pre2</version>
+            <version>2.2pre1</version>
         </dependency>
     </dependencies>
 
@@ -83,9 +83,9 @@
 
     <repositories>
         <repository>
-            <id>mbari-maven-repository</id>
-            <name>MBARI Maven Repository</name>
-            <url>http://mbari-maven-repository.googlecode.com/svn/repository/</url>
+            <id>rxtx-repository</id>
+            <name>My rxtx maven Repository</name>
+            <url>https://raw.github.com/nfrancois/rxtx-java/master/releases</url>
         </repository>
     </repositories>
 

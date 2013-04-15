@@ -35,6 +35,7 @@
 
 
     <build>
+        <!--
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -43,7 +44,7 @@
                 </excludes>
             </resource>
         </resources>
-
+        -->
         <plugins>
             <!-- Compiler -->
             <plugin>

@@ -20,7 +20,7 @@
         </file>
         <file>
             <source>src/main/resources/froguino-sender.properties</source>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>/conf/</outputDirectory>
         </file>
     </files>
     <fileSets>
